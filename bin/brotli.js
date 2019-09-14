@@ -20,7 +20,7 @@ try {
 
   let output = join(dirname(input), [basename(input), statSync(input).isDirectory() ? 'tar.br' : 'br'].join('.'));
   let source = output.endsWith('.tar.br') ? pack(input) : createReadStream(input, { highWaterMark: 2 ** 20 });
-  let target = createWriteStream(output, { mode: 0o600 });
+  let target = createWriteStream(output, { mode: 0o644 });
 
   source.once('error', (error) => {
     throw error;

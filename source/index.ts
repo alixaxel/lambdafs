@@ -48,7 +48,7 @@ class LambdaFS {
 
     return new Promise((resolve, reject) => {
       let source = output.endsWith('.tar.gz') ? pack(path) : createReadStream(path, { highWaterMark: 2 ** 23 });
-      let target = createWriteStream(output, { mode: 0o600 });
+      let target = createWriteStream(output, { mode: 0o644 });
 
       source.once('error', (error: Error) => {
         return reject(error);

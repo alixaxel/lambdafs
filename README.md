@@ -1,4 +1,7 @@
-# lambdafs
+# LambdaFS
+
+[![lambdafs](https://img.shields.io/npm/v/lambdafs.svg?style=for-the-badge)](https://www.npmjs.com/package/lambdafs)
+[![Donate](https://img.shields.io/badge/donate-paypal-orange.svg?style=for-the-badge)](https://paypal.me/alixaxel)
 
 Efficient (de)compression package for AWS Lambda, supporting **Brolti**, **Gzip** and **Tarballs**
 

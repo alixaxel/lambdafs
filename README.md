@@ -74,8 +74,6 @@ Supported extensions are: `.br`, `.gz`, `.tar`, `.tar.br` (and `.tbr`), `.tar.gz
 
 > For tarballs, original file modes are perserved. For any other files `0700` is assumed.
 
-## Command Line
-
 ## Rationale
 
 Getting large resources onto AWS Lambda can be a challenging task due to the [deployment package size limit](https://docs.aws.amazon.com/lambda/latest/dg/limits.html#w291aac11c35c15):

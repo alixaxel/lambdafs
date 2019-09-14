@@ -21,6 +21,7 @@
   },
   "scripts": {
     "build": "rimraf build && tsc -p tsconfig.json && cpx 'source/iltorb/**' build/iltorb",
+    "preversion": "npm run build",
     "postversion": "git push && git push --tags && npm publish"
   },
   "dependencies": {

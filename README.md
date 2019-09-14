@@ -13,15 +13,15 @@ npm install lambdafs --save-prod
 
 ## CLI
 
-This package ships with the `brotli` CLI command to easily compress files and/or folders.
+This package provides a [`brotli` CLI command](/alixaxel/lambdafs/tree/master/bin) to conveniently compress files and/or folders.
 
 ```shell
-brotli /path/to/compress
+npx lambdafs /path/to/compress
 ```
 
 The resulting file will be a (potentially tarballed) Brotli compressed file, with the same base name as the source.
 
-> It might take a while to compress large files (100MB ~ 5 minutes).
+> Due to the highest compression level, it might take a while to compress large files (100MB ~ 5 minutes).
 
 ## Usage
 
@@ -60,7 +60,7 @@ exports.handler = async (event, context) => {
 
 Compreses a file/folder with Gzip and returns the path to the compressed (tarballed) file.
 
-> The resulting file(s) will be saved under the default temporary directory (`/tmp` on AWS Lambda).
+> The resulting file will be saved under the default temporary directory (`/tmp` on AWS Lambda).
 
 Due to costly execution time on AWS Lambda, Gzip is *always* used to compress files.
 

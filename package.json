@@ -7,11 +7,9 @@
   },
   "license": "MIT",
   "description": "Efficient (de)compression package for AWS Lambda",
+  "bin": "bin/brotli.js",
   "main": "build/index.js",
-  "types": "build/index.d.ts",
-  "bin": {
-    "brotli": "bin/brotli.js"
-  },
+  "typings": "build/index.d.ts",
   "files": [
     "bin",
     "build"
@@ -27,13 +25,11 @@
   "dependencies": {
     "tar-fs": "^2.0.0"
   },
-  "optionalDependencies": {
-    "iltorb": "^2.4.3"
-  },
   "devDependencies": {
     "@types/node": "12.7.5",
     "@types/tar-fs": "^1.16.1",
     "cpx": "^1.5.0",
+    "iltorb": "^2.4.3",
     "rimraf": "^3.0.0",
     "ts-node": "^8.3.0",
     "typescript": "^3.6.3"

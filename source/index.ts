@@ -21,7 +21,7 @@ class LambdaFS {
       let iltorb = 'iltorb';
 
       if (['AWS_Lambda_nodejs8.10', 'AWS_Lambda_nodejs10.x'].includes(process.env.AWS_EXECUTION_ENV) === true) {
-        iltorb = join(__dirname, iltorb, process.versions['node'].split('.', 1).join('.'));
+        iltorb = join(__dirname, iltorb, process.versions['node'].split('.').shift());
       }
 
       try {

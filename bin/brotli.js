@@ -67,7 +67,7 @@ try {
       process.stdout.cursorTo(0);
     }
 
-    process.stdout.write(`Compressing '${input}' to '${basename(output)}'... (${read.toFixed(1)} -> ${written.toFixed(1)} MiB)`);
+    process.stdout.write(`Compressing '${input}' to '${basename(output)}'... (${read.toFixed(2)} -> ${written.toFixed(2)} MiB)`);
   });
 
   target.once('close', () => {
@@ -76,7 +76,7 @@ try {
       process.stdout.cursorTo(0);
     }
 
-    process.stdout.write(`Compressed '${input}' to '${basename(output)}'... (${read.toFixed(1)} -> ${written.toFixed(1)} MiB)`);
+    process.stdout.write(`Compressed '${input}' to '${basename(output)}'... (${read.toFixed(2)} -> ${written.toFixed(2)} MiB)`);
   });
 
   process.on('exit', () => {

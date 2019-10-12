@@ -91,7 +91,7 @@ This is where the [Brotli algorithm](https://www.opencpu.org/posts/brotli-benchm
 
 It allows us to get the best compression ratio and fast decompression times (at the expense of a slow compression).
 
-This package ships with stripped-down versions of `iltorb` (compatible with AWS Lambda) as bundled dependencies.
+This package ships with a stripped-down version of `iltorb` (compatible with AWS Lambda) as a bundled dependency.
 
 ## License
 

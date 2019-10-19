@@ -13,7 +13,7 @@ npm install lambdafs --save-prod
 
 ## CLI
 
-This package provides a [`brotli` CLI command](/alixaxel/lambdafs/tree/master/bin) to conveniently compress files and/or folders.
+This package provides a [`brotli` CLI command](/bin) to conveniently compress files and/or folders.
 
 ```shell
 npx lambdafs /path/to/compress

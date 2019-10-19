@@ -39,7 +39,7 @@ class LambdaFS {
   }
 
   /**
-   * Compreses a file/folder with Gzip and returns the path to the compressed (tarballed) file.
+   * Compresses a file/folder with Gzip and returns the path to the compressed (tarballed) file.
    *
    * @param path Path of the file/folder to compress.
    */

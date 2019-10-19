@@ -43,8 +43,8 @@ exports.handler = async (event, context) => {
 
     // Decompressing
     let decompressed = {
-      file: await lambdafs.deflate(compressed.file), // /tmp/index.js
-      folder: await lambdafs.deflate(compressed.folder), // /tmp/task
+      file: await lambdafs.inflate(compressed.file), // /tmp/index.js
+      folder: await lambdafs.inflate(compressed.folder), // /tmp/task
     };
 
     return context.succeed({ file, folder, compressed, decompressed });
@@ -58,7 +58,7 @@ exports.handler = async (event, context) => {
 
 ### `deflate(path: string): Promise<string>`
 
-Compreses a file/folder with Gzip and returns the path to the compressed (tarballed) file.
+Compresses a file/folder with Gzip and returns the path to the compressed (tarballed) file.
 
 > The resulting file will be saved under the default temporary directory (`/tmp` on AWS Lambda).
 

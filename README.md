@@ -25,7 +25,7 @@ The resulting file will be a (potentially tarballed) Brotli compressed file, wit
 
 ## Usage
 
-Either the `nodejs8.10` or `nodejs10.x` AWS Lambda runtime is required for this package to work properly.
+The `nodejs8.10`, `nodejs10.x` or `nodejs12.x` AWS Lambda runtime is required for this package to work properly.
 
 ```javascript
 const lambdafs = require('lambdafs');

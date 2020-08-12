@@ -15,24 +15,23 @@
     "build"
   ],
   "engines": {
-    "node": ">= 8"
+    "node": ">= 10.16"
   },
   "scripts": {
-    "build": "rimraf build && tsc -p tsconfig.json && cpx 'source/iltorb/**' build/iltorb",
+    "build": "rimraf build && tsc -p tsconfig.json",
     "preversion": "npm run build",
     "postversion": "git push && git push --tags && npm publish"
   },
   "dependencies": {
-    "tar-fs": "^2.0.0"
+    "tar-fs": "^2.1.0"
   },
   "devDependencies": {
     "@types/node": "^12.7.12",
-    "@types/tar-fs": "^1.16.1",
+    "@types/tar-fs": "^2.0.0",
     "cpx": "^1.5.0",
-    "iltorb": "^2.4.3",
-    "rimraf": "^3.0.0",
-    "ts-node": "^8.4.1",
-    "typescript": "^3.6.4"
+    "rimraf": "^3.0.2",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
   },
   "bundledDependencies": [
     "tar-fs"

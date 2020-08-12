@@ -31,22 +31,13 @@ try {
   });
 
   let size = statSync(input).isFile() ? statSync(input).size : 0;
-  let stream = null;
-
-  if (createBrotliCompress !== undefined) {
-    stream = createBrotliCompress({
-      chunkSize: 2 ** 18,
-      params: {
-        [constants.BROTLI_PARAM_QUALITY]: constants.BROTLI_MAX_QUALITY,
-        [constants.BROTLI_PARAM_SIZE_HINT]: size,
-      },
-    });
-  } else {
-    stream = require('iltorb').compressStream({
-      quality: 11,
-      size_hint: size,
-    });
-  }
+  let stream = createBrotliCompress({
+    chunkSize: 2 ** 18,
+    params: {
+      [constants.BROTLI_PARAM_QUALITY]: constants.BROTLI_MAX_QUALITY,
+      [constants.BROTLI_PARAM_SIZE_HINT]: size,
+    },
+  });
 
   let read = 0;
   let written = 0;

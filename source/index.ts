@@ -10,32 +10,9 @@ class LambdaFS {
   /**
    * Lazy loads the appropriate Brotli decompression package.
    * On Node 10.16+ it's provided natively by the `zlib` module.
-   * On Node 8.10 runtime (under AWS Lambda) a compatible `iltorb` package is provided.
    */
   static get brotli(): typeof createBrotliDecompress {
-    if (createBrotliDecompress !== undefined) {
-      return createBrotliDecompress;
-    }
-
-    if (this.hasOwnProperty('_brotli') !== true) {
-      let iltorb = 'iltorb';
-
-      if (process.env.AWS_EXECUTION_ENV === 'AWS_Lambda_nodejs8.10') {
-        iltorb = join(__dirname, 'iltorb');
-      }
-
-      try {
-        this._brotli = require(iltorb).decompressStream;
-      } catch (error) {
-        if (error.code === 'MODULE_NOT_FOUND') {
-          throw new Error(`Failed to load 'iltorb' package.`);
-        }
-
-        throw error;
-      }
-    }
-
-    return this._brotli;
+    return createBrotliDecompress;
   }
 
   /**

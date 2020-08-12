@@ -6,5 +6,3 @@ build/
 node_modules/
 nodejs/
 package-lock.json
-
-!source/iltorb/**

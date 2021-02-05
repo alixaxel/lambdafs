@@ -5,16 +5,6 @@ import { extract, pack } from 'tar-fs';
 import { createBrotliDecompress, createGzip, createUnzip } from 'zlib';
 
 class LambdaFS {
-  private static _brotli: any;
-
-  /**
-   * Lazy loads the appropriate Brotli decompression package.
-   * On Node 10.16+ it's provided natively by the `zlib` module.
-   */
-  static get brotli(): typeof createBrotliDecompress {
-    return createBrotliDecompress;
-  }
-
   /**
    * Compresses a file/folder with Gzip and returns the path to the compressed (tarballed) file.
    *
@@ -82,7 +72,7 @@ class LambdaFS {
       });
 
       if (/(?:br|gz)$/i.test(path) === true) {
-        source.pipe(/br$/i.test(path) ? LambdaFS.brotli({ chunkSize: 2 ** 21 }) : createUnzip({ chunkSize: 2 ** 21 })).pipe(target);
+        source.pipe(/br$/i.test(path) ? createBrotliDecompress({ chunkSize: 2 ** 21 }) : createUnzip({ chunkSize: 2 ** 21 })).pipe(target);
       } else {
         source.pipe(target);
       }

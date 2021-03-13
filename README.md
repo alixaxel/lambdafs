@@ -1,6 +1,7 @@
 # LambdaFS
 
 [![lambdafs](https://img.shields.io/npm/v/lambdafs.svg?style=for-the-badge)](https://www.npmjs.com/package/lambdafs)
+[![TypeScript](https://img.shields.io/npm/types/chrome-aws-lambda?style=for-the-badge)](https://www.typescriptlang.org/dt/search?search=lambdafs)
 [![Donate](https://img.shields.io/badge/donate-paypal-orange.svg?style=for-the-badge)](https://paypal.me/alixaxel)
 
 Efficient (de)compression package for AWS Lambda, supporting **Brolti**, **Gzip** and **Tarballs**
@@ -25,7 +26,7 @@ The resulting file will be a (potentially tarballed) Brotli compressed file, wit
 
 ## Usage
 
-The `nodejs8.10`, `nodejs10.x` or `nodejs12.x` AWS Lambda runtime is required for this package to work properly.
+The `nodejs10.x` or `nodejs12.x` AWS Lambda runtime is required for this package to work properly.
 
 ```javascript
 const lambdafs = require('lambdafs');

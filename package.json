@@ -1,13 +1,15 @@
 {
   "name": "lambdafs",
   "private": false,
-  "version": "2.0.2",
+  "version": "2.0.3",
   "author": {
     "name": "Alix Axel"
   },
   "license": "MIT",
   "description": "Efficient (de)compression package for AWS Lambda",
-  "bin": "bin/brotli.js",
+  "bin": {
+    "lambdafs": "bin/brotli.js"
+  },
   "main": "build/index.js",
   "typings": "build/index.d.ts",
   "files": [
@@ -33,9 +35,6 @@
     "ts-node": "^9.1.1",
     "typescript": "^4.2.3"
   },
-  "bundledDependencies": [
-    "tar-fs"
-  ],
   "bugs": {
     "url": "https://github.com/alixaxel/lambdafs/issues"
   },
@@ -64,5 +63,8 @@
     "tabWidth": 2,
     "trailingComma": "es5",
     "useTabs": false
-  }
+  },
+  "bundleDependencies": [
+    "tar-fs"
+  ]
 }

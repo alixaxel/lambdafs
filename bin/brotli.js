@@ -19,7 +19,7 @@ try {
   }
 
   let output = join(dirname(input), [basename(input), statSync(input).isDirectory() ? 'tar.br' : 'br'].join('.'));
-  let source = output.endsWith('.tar.br') ? pack(input) : createReadStream(input, { highWaterMark: 2 ** 24 });
+  let source = output.endsWith('.tar.br') ? pack(input) : createReadStream(input, { highWaterMark: 2 ** 20 });
   let target = createWriteStream(output, { mode: 0o644 });
 
   source.once('error', (error) => {
@@ -32,7 +32,7 @@ try {
 
   let size = statSync(input).isFile() ? statSync(input).size : 0;
   let stream = createBrotliCompress({
-    chunkSize: 2 ** 24,
+    chunkSize: 2 ** 20,
     params: {
       [constants.BROTLI_PARAM_LGBLOCK]: constants.BROTLI_MAX_INPUT_BLOCK_BITS,
       [constants.BROTLI_PARAM_LGWIN]: constants.BROTLI_MAX_WINDOW_BITS,

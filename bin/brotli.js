@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-let { createReadStream, createWriteStream, existsSync, statSync } = require('fs');
-let { basename, dirname, join, resolve } = require('path');
-let { pack } = require('tar-fs');
-let { constants, createBrotliCompress } = require('zlib');
+const { createReadStream, createWriteStream, existsSync, statSync } = require('fs');
+const { basename, dirname, join, resolve } = require('path');
+const { pack } = require('tar-fs');
+const { constants, createBrotliCompress } = require('zlib');
 
 try {
   let input = process.argv.slice(2).shift();
@@ -19,7 +19,7 @@ try {
   }
 
   let output = join(dirname(input), [basename(input), statSync(input).isDirectory() ? 'tar.br' : 'br'].join('.'));
-  let source = output.endsWith('.tar.br') ? pack(input) : createReadStream(input, { highWaterMark: 2 ** 20 });
+  let source = output.endsWith('.tar.br') ? pack(input) : createReadStream(input, { highWaterMark: 2 ** 24 });
   let target = createWriteStream(output, { mode: 0o644 });
 
   source.once('error', (error) => {
@@ -32,8 +32,10 @@ try {
 
   let size = statSync(input).isFile() ? statSync(input).size : 0;
   let stream = createBrotliCompress({
-    chunkSize: 2 ** 18,
+    chunkSize: 2 ** 24,
     params: {
+      [constants.BROTLI_PARAM_LGBLOCK]: constants.BROTLI_MAX_INPUT_BLOCK_BITS,
+      [constants.BROTLI_PARAM_LGWIN]: constants.BROTLI_MAX_WINDOW_BITS,
       [constants.BROTLI_PARAM_QUALITY]: constants.BROTLI_MAX_QUALITY,
       [constants.BROTLI_PARAM_SIZE_HINT]: size,
     },
@@ -58,7 +60,7 @@ try {
       process.stdout.cursorTo(0);
     }
 
-    process.stdout.write(`Compressing '${input}' to '${basename(output)}'... (${read.toFixed(2)} -> ${written.toFixed(2)} MiB)`);
+    process.stdout.write(`Compressing '${input}' (${read.toFixed(2)} MiB) to '${basename(output)}' (${written.toFixed(2)} MiB)...`);
   });
 
   target.once('close', () => {
@@ -67,7 +69,7 @@ try {
       process.stdout.cursorTo(0);
     }
 
-    process.stdout.write(`Compressed '${input}' to '${basename(output)}'... (${read.toFixed(2)} -> ${written.toFixed(2)} MiB)`);
+    process.stdout.write(`Compressed '${input}' (${read.toFixed(2)} MiB) to '${basename(output)}' (${written.toFixed(2)} MiB).`);
   });
 
   process.on('exit', () => {
